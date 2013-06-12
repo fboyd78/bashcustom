@@ -1,5 +1,5 @@
 function sshto {
-  ssh -t $1 "wget -q https://raw.github.com/fboyd78/bashcustom/master/bash_custom -O /tmp/bash_custom; bash --rcfile /tmp/bash_custom -i; rm /tmp/bash_custom"
+  ssh -t $1 "curl -s https://raw.github.com/fboyd78/bashcustom/master/bash_custom > /tmp/bash_custom; bash --rcfile /tmp/bash_custom -i; rm /tmp/bash_custom"
 }
 
 LI1=`tty|cut -d/ -f3`
