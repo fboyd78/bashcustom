@@ -1,5 +1,7 @@
-function sshto {
-  ssh -t $1 "curl -s https://raw.github.com/fboyd78/bashcustom/master/bash_custom > /tmp/bash_custom; bash --rcfile /tmp/bash_custom -i; rm /tmp/bash_custom"
+function ssh {
+  if [ $1 ]; then
+    ssh -t $1 "curl -s https://raw.github.com/fboyd78/bashcustom/master/bash_custom > /tmp/bash_custom; bash --rcfile /tmp/bash_custom -i; rm /tmp/bash_custom"
+  fi
 }
 
 LI1=`tty|cut -d/ -f3`
