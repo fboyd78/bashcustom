@@ -1,0 +1,69 @@
+function sshto {
+  ssh -t $1 "wget -q http://users.pngusa.net/~fboyd/bash_custom -O /tmp/bash_custom; bash --rcfile /tmp/bash_custom -i; rm /tmp/bash_custom"
+}
+
+LI1=`tty|cut -d/ -f3`
+LI2=`tty|cut -d/ -f4`
+
+function blue {
+  COLOR1="\[\033[0;34m\]"
+  COLOR2="\[\033[1;34m\]"
+  COLOR3="\[\033[0;37m\]"
+  COLOR4="\[\033[0;32m\]"
+  COLOR9="\[\033[0m\]"
+}
+function cyan {
+  COLOR1="\[\033[0;36m\]"
+  COLOR2="\[\033[1;36m\]"
+  COLOR3="\[\033[0;37m\]"
+  COLOR4="\[\033[0;32m\]"
+  COLOR9="\[\033[0m\]"
+}
+function green {
+  COLOR1="\[\033[0;32m\]"
+  COLOR2="\[\033[1;32m\]"
+  COLOR3="\[\033[0;37m\]"
+  COLOR4="\[\033[0;32m\]"
+  COLOR9="\[\033[0m\]"
+}
+function magenta {
+  COLOR1="\[\033[0;35m\]"
+  COLOR2="\[\033[1;35m\]"
+  COLOR3="\[\033[0;37m\]"
+  COLOR4="\[\033[0;32m\]"
+  COLOR9="\[\033[0m\]"
+}
+function red {
+  COLOR1="\[\033[0;31m\]"
+  COLOR2="\[\033[1;31m\]"
+  COLOR3="\[\033[0;37m\]"
+  COLOR4="\[\033[0;32m\]"
+  COLOR9="\[\033[0m\]"
+}
+function white {
+  COLOR1="\[\033[0;37m\]" # Dark White
+  COLOR2="\[\033[1;37m\]" # Bright White
+  COLOR3="\[\033[0;37m\]" # Grey
+  COLOR4="\[\033[0;32m\]" # Green
+  COLOR9="\[\033[0m\]"
+}
+
+rand() {
+	printf $((  $1 *  RANDOM  / 32767   ))
+}
+rand_element () {
+    local -a th=("$@")
+    unset th[0]
+    printf $'%s\n' "${th[$(($(rand "${#th[*]}")+1))]}"
+}
+$(rand_element blue cyan green magenta red white)
+
+PS1="$COLOR3-$COLOR1-$COLOR2($COLOR3\u$COLOR4@$COLOR3\h$COLOR2)$COLOR1-$COLOR2($COLOR3$LI1$COLOR4/$COLOR3$LI2$COLOR2)$COLOR1-$COLOR2($COLOR3\$(date +%I:%M%P)$COLOR4:$COLOR3\$(date +%m/%d/%y)$COLOR2)$COLOR1-$COLOR3-$COLOR4\n$COLOR3-$COLOR1-$COLOR2($COLOR3\$$COLOR4:$COLOR3\w$COLOR2)$COLOR1-$COLOR3-$COLOR9 "
+PS2="$COLOR2-$COLOR1-$COLOR3-$COLOR9 "
+
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias ls='ls -XF --color=auto'
+export TERM=xterm
+
