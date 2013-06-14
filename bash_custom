@@ -1,6 +1,6 @@
 function ssh {
   if [ $1 ]; then
-    /usr/bin/ssh -t $1 $2 $3 $4 "curl -s https://raw.github.com/fboyd78/bashcustom/master/bash_custom > /tmp/bash_custom; bash --rcfile /tmp/bash_custom -i; rm -f /tmp/bash_custom >/dev/null 2>&1"
+    /usr/bin/ssh -t $1 $2 $3 $4 "curl -k -s https://raw.github.com/fboyd78/bashcustom/master/bash_custom > /tmp/bash_custom; bash --rcfile /tmp/bash_custom -i; rm -f /tmp/bash_custom >/dev/null 2>&1"
   fi
 }
 function sshsl {
