@@ -77,6 +77,11 @@ rand_element () {
 }
 $(rand_element blue cyan green magenta red white)
 
+alias myalert="mysql -S /var/run/mysqld/mysqld-alert.sock"
+alias myladb="mysql -S /var/run/mysqld/mysqld-ladb.sock"
+alias mysaudb="mysql -S /var/run/mysqld/mysqld-sadb.sock"
+alias mysldb="mysql -S /var/run/mysqld/mysqld-sldb01.sock"
+
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
